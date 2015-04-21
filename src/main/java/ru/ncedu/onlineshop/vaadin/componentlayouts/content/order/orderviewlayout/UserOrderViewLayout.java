@@ -2,11 +2,13 @@ package ru.ncedu.onlineshop.vaadin.componentlayouts.content.order.orderviewlayou
 
 import com.rits.cloning.Cloner;
 import com.vaadin.ui.*;
+import com.vaadin.ui.themes.ValoTheme;
 import ru.ncedu.onlineshop.entity.order.Order;
 import ru.ncedu.onlineshop.entity.order.OrderState;
 import ru.ncedu.onlineshop.exception.IncorrectStateException;
 import ru.ncedu.onlineshop.service.OrderService;
 import ru.ncedu.onlineshop.service.ServiceAPI;
+import ru.ncedu.onlineshop.vaadin.ShopUI;
 import ru.ncedu.onlineshop.vaadin.componentlayouts.content.order.ordertablelayout.OrderTableLayout;
 import ru.ncedu.onlineshop.vaadin.componentlayouts.content.productgrouplyaouts.OrderProductListLayout;
 
@@ -34,7 +36,20 @@ public class UserOrderViewLayout extends VerticalLayout {
         this.orderService = orderService;
         addOrderInfoText();
         addProductOrderView();
+
+        setSpacing(true);
+        setMargin(true);
+        addStyleName(ShopUI.Styles.SMALL_MARGINS);
+        addStyleName(ShopUI.Styles.SMALL_SPACING);
+        setWidth("100%");
+
         addComponent(buttonsLayout);
+
+        buttonsLayout.setSpacing(true);
+        buttonsLayout.setMargin(true);
+        buttonsLayout.addStyleName(ShopUI.Styles.SMALL_MARGINS);
+        buttonsLayout.addStyleName(ShopUI.Styles.SMALL_SPACING);
+        buttonsLayout.setWidth("100%");
 
         renewOrderButton = new Button("Renew order", new Button.ClickListener() {
             @Override
@@ -51,6 +66,7 @@ public class UserOrderViewLayout extends VerticalLayout {
                 }
             }
         });
+        renewOrderButton.setStyleName(ValoTheme.BUTTON_SMALL);
 
         cancelOrderButton = new Button("Cancel order", new Button.ClickListener() {
             @Override
@@ -67,12 +83,13 @@ public class UserOrderViewLayout extends VerticalLayout {
                 }
             }
         });
+        cancelOrderButton.setStyleName(ValoTheme.BUTTON_SMALL);
         changeButtons();
-
     }
 
     protected void addProductOrderView() {
         OrderProductListLayout productOrderViewLayout = new OrderProductListLayout(order, serviceAPI);
+        productOrderViewLayout.setWidth("100%");
         addComponent(productOrderViewLayout);
     }
 
@@ -88,11 +105,13 @@ public class UserOrderViewLayout extends VerticalLayout {
                 "Creation date: " + convertFromCalendarToString(order.getCreationDate())+"\n"+
                 "Confirmation date: " + convertFromCalendarToString(order.getConfirmationDate()) +"\n"+
                 "Delivery date: " + convertFromCalendarToString(order.getDeliveryStartDate())+"\n"+
-                "Completion date: " + convertFromCalendarToString(order.getCompletionDate())+"\n"
-                );
-        textArea.setRows(10);
-        textArea.setSizeFull();
+                "Completion date: " + convertFromCalendarToString(order.getCompletionDate())
+        );
+        textArea.setRows(11);
+        textArea.setWidth("90%");
         textArea.setReadOnly(true);
+        textArea.setWordwrap(false);
+        textArea.addStyleName(ValoTheme.TEXTAREA_BORDERLESS);
         addComponent(textArea);
     }
 

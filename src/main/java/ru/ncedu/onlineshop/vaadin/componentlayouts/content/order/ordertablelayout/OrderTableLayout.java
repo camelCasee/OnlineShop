@@ -1,21 +1,14 @@
 package ru.ncedu.onlineshop.vaadin.componentlayouts.content.order.ordertablelayout;
 
-import com.vaadin.data.Property;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.event.ItemClickEvent;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Table;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.*;
+import com.vaadin.ui.themes.ValoTheme;
 import ru.ncedu.onlineshop.entity.order.Order;
-import ru.ncedu.onlineshop.entity.users.User;
 import ru.ncedu.onlineshop.service.OrderService;
 import ru.ncedu.onlineshop.service.ServiceAPI;
-import ru.ncedu.onlineshop.service.UserService;
+import ru.ncedu.onlineshop.vaadin.ShopUI;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -85,6 +78,11 @@ public abstract class OrderTableLayout extends HorizontalLayout {
                 addOrderViewLayout((Order) event.getItemId());
             }
         });
+
+        orderTable.addStyleName(ValoTheme.TABLE_NO_HORIZONTAL_LINES);
+        orderTable.addStyleName(ValoTheme.TABLE_SMALL);
+        orderTable.addStyleName(ShopUI.Styles.ANIMATION_SLIDE_RIGHT);
+
         tableLayout.addComponent(orderTable);
 
         updateTableButton = new Button("Update table", new Button.ClickListener() {
@@ -95,6 +93,15 @@ public abstract class OrderTableLayout extends HorizontalLayout {
         });
         tableLayout.addComponent(updateTableButton);
         addComponent(tableLayout);
+
+        updateTableButton.addStyleName(ValoTheme.BUTTON_SMALL);
+        updateTableButton.addStyleName(ShopUI.Styles.ANIMATION_SLIDE_RIGHT);
+        tableLayout.setImmediate(true);
+        tableLayout.setMargin(true);
+        tableLayout.setSpacing(true);
+        tableLayout.addStyleName(ShopUI.Styles.SMALL_MARGINS);
+        tableLayout.addStyleName(ShopUI.Styles.SMALL_SPACING);
+        tableLayout.setDefaultComponentAlignment(Alignment.TOP_CENTER);
     }
 
     protected abstract void addOrderViewLayout(Order order);

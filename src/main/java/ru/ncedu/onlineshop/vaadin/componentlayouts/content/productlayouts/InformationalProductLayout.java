@@ -10,8 +10,6 @@ import ru.ncedu.onlineshop.vaadin.componentlayouts.content.parameters.simplepara
 import ru.ncedu.onlineshop.vaadin.componentlayouts.content.parameters.size.InformationalSizeLayout;
 import ru.ncedu.onlineshop.vaadin.componentlayouts.content.parameters.storage.InformationStorageLayout;
 
-import java.awt.*;
-
 /**
  * Created by nikita on 04.02.15.
  */
@@ -23,7 +21,6 @@ public class InformationalProductLayout extends ProductLayout {
     }
 
     protected void fillLayoutWithComponents() {
-        setStyleName("outlined");
         addNameLayout();
         addPriceLayout();
 //        addSizeLayout();

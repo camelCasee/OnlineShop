@@ -2,9 +2,10 @@ package ru.ncedu.onlineshop.vaadin.componentlayouts.content.productlayouts;
 
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Notification;
+import com.vaadin.ui.themes.ValoTheme;
 import ru.ncedu.onlineshop.entity.order.Order;
 import ru.ncedu.onlineshop.entity.product.Product;
-import ru.ncedu.onlineshop.observerpattern.Observer;
+import ru.ncedu.onlineshop.vaadin.ShopUI;
 
 /**
  * Created by ali on 29.01.15.
@@ -20,6 +21,12 @@ public class ProductCatalogLayout extends InformationalProductLayout {
         wasOrdered = order.findProductInOrder(product);
         addOrderProductButtonClickListener(product);
         setOrderProductButtonCaptionDependsOnOrder();
+
+        orderProductButton.setStyleName(ValoTheme.BUTTON_TINY);
+        //priceLayout.setMargin(true);
+        priceLayout.setSpacing(true);
+        priceLayout.addStyleName(ShopUI.Styles.SMALL_SPACING);
+        //priceLayout.addStyleName(ShopUI.Styles.SMALL_MARGINS);
         priceLayout.addComponent(orderProductButton);
 //        order.registerObserver(this);
     }

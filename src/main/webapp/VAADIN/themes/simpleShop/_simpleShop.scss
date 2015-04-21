@@ -1,0 +1,51 @@
+@mixin simpleShop {
+  @include valo;
+
+  .product-layout {
+    border: round(0.17 * $v-unit-size--tiny) solid $v-font-color;
+    border-radius: round($v-unit-size--tiny * 0.25);
+    @include animation(
+            valo-animate-in-slide-up 800ms 10ms backwards,
+            valo-animate-in-fade 600ms 100ms backwards
+    );
+  }
+
+  .small-margins {
+    padding: round($v-unit-size--tiny * 0.4);
+  }
+
+  .small-spacing {
+    .v-verticallayout-spacing-on {
+      padding-top: round($v-unit-size--tiny * 0.4);
+    }
+
+    .v-horizontallayout-spacing-on {
+      padding-left: round($v-unit-size--tiny * 0.4);
+    }
+  }
+
+  .animation-fade-in {
+    @include animation(valo-animate-in-fade 600ms 100ms backwards);
+  }
+
+  .animation-fade-out {
+    @include animation(valo-animate-out-fade 600ms 100ms backwards);
+  }
+
+  .animation-slide-up {
+    @include animation(valo-animate-in-slide-up 800ms 10ms backwards);
+  }
+
+  .animation-slide-down {
+    @include animation(valo-animate-in-slide-down 800ms 10ms backwards);
+  }
+
+  .animation-slide-left {
+    @include animation(valo-animate-in-slide-left 800ms 10ms backwards);
+  }
+
+  .animation-slide-right {
+    @include animation(valo-animate-in-slide-right 800ms 10ms backwards);
+  }
+
+}

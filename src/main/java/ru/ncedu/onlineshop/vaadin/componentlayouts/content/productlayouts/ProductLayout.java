@@ -8,6 +8,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import ru.ncedu.onlineshop.entity.product.Product;
 import ru.ncedu.onlineshop.service.ServiceAPI;
+import ru.ncedu.onlineshop.vaadin.ShopUI;
 import ru.ncedu.onlineshop.vaadin.componentlayouts.content.parameters.manufacturer.ManufacturerLayout;
 import ru.ncedu.onlineshop.vaadin.componentlayouts.content.parameters.name.NameLayout;
 import ru.ncedu.onlineshop.vaadin.componentlayouts.content.parameters.price.PriceLayout;
@@ -42,13 +43,15 @@ public abstract class ProductLayout extends VerticalLayout {
     }
 
     private void setupLayout() {
+        addStyleName(ShopUI.Styles.PRODUCT_LAYOUT);
         setImmediate(true);
-        //setStyleName("outlined");
+        addStyleName(ShopUI.Styles.SMALL_MARGINS);
         setMargin(true);
-        //setSpacing(true);
+        setSpacing(true);
+        addStyleName(ShopUI.Styles.SMALL_SPACING);
         setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
-        //setSizeFull();
-        setWidth("100%");
+        setWidth("84%");
+        //setWidthUndefined();
         setHeightUndefined();
     }
 

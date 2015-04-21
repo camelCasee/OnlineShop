@@ -1,7 +1,9 @@
 package ru.ncedu.onlineshop.vaadin.componentlayouts.content.productlayouts;
 
 import com.vaadin.ui.Button;
+import com.vaadin.ui.themes.ValoTheme;
 import ru.ncedu.onlineshop.entity.product.Product;
+import ru.ncedu.onlineshop.vaadin.ShopUI;
 import ru.ncedu.onlineshop.vaadin.componentlayouts.content.productgrouplyaouts.ProductListLayout;
 
 /**
@@ -21,8 +23,13 @@ public class EditableProductLayout extends InformationalProductLayout {
     private void addEditAndDeleteButtons() {
         editButton = new Button("Edit");
         deleteButton = new Button("Delete");
-        nameLayout.addComponent(editButton);
-        nameLayout.addComponent(deleteButton);
+        editButton.setStyleName(ValoTheme.BUTTON_TINY);
+        deleteButton.setStyleName(ValoTheme.BUTTON_TINY);
+        nameLayout.addComponents(editButton, deleteButton);
+        //nameLayout.setMargin(true);
+        nameLayout.setSpacing(true);
+        nameLayout.addStyleName(ShopUI.Styles.SMALL_SPACING);
+        //nameLayout.addStyleName(ShopUI.Styles.SMALL_MARGINS);
         addEditButtonClickListener();
         addDeleteButtonClickListener();
     }
@@ -50,4 +57,5 @@ public class EditableProductLayout extends InformationalProductLayout {
         parent.addComponent(new EditProductLayout(product, parent),  index);
         parent.removeComponent(this);
     }
+
 }

@@ -10,6 +10,7 @@ import ru.ncedu.onlineshop.security.AuthenticationService;
 import ru.ncedu.onlineshop.service.OrderService;
 import ru.ncedu.onlineshop.service.ServiceAPI;
 import ru.ncedu.onlineshop.service.UserService;
+import ru.ncedu.onlineshop.vaadin.ShopUI;
 import ru.ncedu.onlineshop.vaadin.componentlayouts.content.UserProductViewContent;
 import ru.ncedu.onlineshop.vaadin.componentlayouts.content.order.ordertablelayout.UserOrderTableLayout;
 import ru.ncedu.onlineshop.vaadin.componentlayouts.shoppingcart.OrderFormalizationLayout;
@@ -39,6 +40,14 @@ public class UserPage extends BasePage {
         shoppingCartPanel.setSizeFull();
         shoppingCartLayout.addComponent(shoppingCartPanel);
         shoppingCartLayout.setSizeFull();
+
+        shoppingCartLayout.setImmediate(true);
+        shoppingCartLayout.setSpacing(true);
+        shoppingCartLayout.setMargin(true);
+        shoppingCartLayout.addStyleName(ShopUI.Styles.SMALL_MARGINS);
+        shoppingCartLayout.addStyleName(ShopUI.Styles.SMALL_SPACING);
+        shoppingCartLayout.addStyleName(ShopUI.Styles.ANIMATION_SLIDE_UP);
+        shoppingCartLayout.addStyleName(ShopUI.Styles.ANIMATION_FADE_IN);
 
         rightLayout.addComponent(shoppingCartLayout);
         rightLayout.setExpandRatio(shoppingCartLayout, 2.0f);

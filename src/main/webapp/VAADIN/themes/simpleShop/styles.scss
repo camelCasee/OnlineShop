@@ -1,0 +1,12 @@
+@import "simpleShop";
+@import "variables";
+
+
+.simpleShop {
+  @include simpleShop;
+}
+
+html {
+  width: 100%;
+  min-width: 100%;
+}

@@ -3,6 +3,7 @@ package ru.ncedu.onlineshop.vaadin.componentlayouts.content;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.HorizontalLayout;
 import ru.ncedu.onlineshop.service.ServiceAPI;
+import ru.ncedu.onlineshop.vaadin.ShopUI;
 import ru.ncedu.onlineshop.vaadin.componentlayouts.content.productgrouplyaouts.ProductListLayout;
 import ru.ncedu.onlineshop.vaadin.componentlayouts.menu.ProductTypeTreeLayout;
 
@@ -23,9 +24,11 @@ public abstract class ProductViewContent extends HorizontalLayout {
 
     private void setupLayout() {
         setImmediate(true);
-        setStyleName("outlined");
+        //setStyleName("outlined");
         setMargin(true);
         setSpacing(true);
+        addStyleName(ShopUI.Styles.SMALL_MARGINS);
+        addStyleName(ShopUI.Styles.SMALL_SPACING);
         setDefaultComponentAlignment(Alignment.TOP_CENTER);
         setWidth("100%");
         setHeightUndefined();

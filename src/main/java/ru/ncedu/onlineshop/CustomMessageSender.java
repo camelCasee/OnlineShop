@@ -1,9 +1,5 @@
 package ru.ncedu.onlineshop;
 
-/**
- * Created by Никита on 09.09.14.
- */
-
 import org.apache.activemq.command.ActiveMQMapMessage;
 import org.slf4j.LoggerFactory;
 import org.springframework.jms.core.JmsTemplate;

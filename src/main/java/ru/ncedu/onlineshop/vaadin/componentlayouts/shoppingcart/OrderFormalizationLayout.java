@@ -7,17 +7,21 @@ import com.vaadin.data.validator.StringLengthValidator;
 import com.vaadin.server.UserError;
 import com.vaadin.shared.ui.combobox.FilteringMode;
 import com.vaadin.ui.*;
+import com.vaadin.ui.themes.ValoTheme;
 import ru.ncedu.onlineshop.entity.order.DeliveryMethod;
 import ru.ncedu.onlineshop.entity.order.Order;
 import ru.ncedu.onlineshop.entity.users.User;
 import ru.ncedu.onlineshop.exception.IncorrectStateException;
-import ru.ncedu.onlineshop.security.AuthenticationService;
 import ru.ncedu.onlineshop.service.OrderService;
 import ru.ncedu.onlineshop.service.ServiceAPI;
 import ru.ncedu.onlineshop.service.UserService;
+import ru.ncedu.onlineshop.vaadin.ShopUI;
 import ru.ncedu.onlineshop.vaadin.componentlayouts.content.productgrouplyaouts.OrderProductListLayout;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by ali on 30.01.15.
@@ -42,11 +46,24 @@ public class OrderFormalizationLayout extends VerticalLayout {
         this.orderService = orderService;
         this.userService = userService;
 
+        setupThisComponent();
+
         currentOrder = orderService.getCurrentOrder();
         if (currentOrder.getOrderItemList().size()==0)
             throw new IncorrectStateException("You cannot formalize empty order!");
         this.currentUser = currentOrder.getUser();
         initComponents();
+    }
+
+    private void setupThisComponent() {
+        setImmediate(true);
+        setMargin(true);
+        setSpacing(true);
+        addStyleName(ShopUI.Styles.SMALL_MARGINS);
+        addStyleName(ShopUI.Styles.SMALL_SPACING);
+        setDefaultComponentAlignment(Alignment.TOP_CENTER);
+        setWidth("100%");
+        setHeightUndefined();
     }
 
     protected void initComponents(){
@@ -192,8 +209,13 @@ public class OrderFormalizationLayout extends VerticalLayout {
 
     protected void addConfirmAndBackButtons(){
         HorizontalLayout buttonsLayout = new HorizontalLayout();
+        buttonsLayout.setSpacing(true);
+        //buttonsLayout.setMargin(true);
+        buttonsLayout.addStyleName(ShopUI.Styles.SMALL_SPACING);
+        //buttonsLayout.addStyleName(ShopUI.Styles.SMALL_MARGINS);
 
         Button confirmOrderButton = new Button("Confirm order");
+        confirmOrderButton.setStyleName(ValoTheme.BUTTON_SMALL);
         confirmOrderButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent event) {
@@ -203,6 +225,7 @@ public class OrderFormalizationLayout extends VerticalLayout {
         buttonsLayout.addComponent(confirmOrderButton);
 
         Button backButton = new Button("Go back");
+        backButton.setStyleName(ValoTheme.BUTTON_SMALL);
         backButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent event) {

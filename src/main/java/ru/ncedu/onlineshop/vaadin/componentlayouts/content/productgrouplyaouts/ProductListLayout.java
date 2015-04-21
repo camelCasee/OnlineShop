@@ -3,6 +3,7 @@ package ru.ncedu.onlineshop.vaadin.componentlayouts.content.productgrouplyaouts;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.VerticalLayout;
 import ru.ncedu.onlineshop.entity.product.Product;
+import ru.ncedu.onlineshop.vaadin.ShopUI;
 import ru.ncedu.onlineshop.vaadin.componentlayouts.content.productlayouts.ProductLayout;
 
 import java.util.List;
@@ -22,11 +23,11 @@ public abstract class ProductListLayout extends VerticalLayout {
 
     private void setupLayout() {
         setImmediate(true);
-        setStyleName("outlined");
-//        setMargin(true);
-//        setSpacing(true);
+        setMargin(true);
+        setSpacing(true);
+        addStyleName(ShopUI.Styles.SMALL_MARGINS);
+        addStyleName(ShopUI.Styles.SMALL_SPACING);
         setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
-        //setSizeFull();
         setWidth("100%");
         setHeightUndefined();
     }

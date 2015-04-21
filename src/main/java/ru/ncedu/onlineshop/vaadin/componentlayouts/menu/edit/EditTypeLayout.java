@@ -7,6 +7,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import ru.ncedu.onlineshop.entity.product.ProductType;
 import ru.ncedu.onlineshop.service.ServiceAPI;
+import ru.ncedu.onlineshop.vaadin.ShopUI;
 import ru.ncedu.onlineshop.vaadin.componentlayouts.common.DoubleButtonsDialog;
 import ru.ncedu.onlineshop.vaadin.componentlayouts.menu.ProductTypeTreeLayout;
 
@@ -95,9 +96,11 @@ public class EditTypeLayout extends VerticalLayout {
     }
 
     private void setupLayout() {
-        setStyleName("outlined");
-        //setMargin(true);
-        //setSpacing(true);
+        setImmediate(true);
+        setMargin(true);
+        setSpacing(true);
+        addStyleName(ShopUI.Styles.SMALL_MARGINS);
+        addStyleName(ShopUI.Styles.SMALL_SPACING);
         setDefaultComponentAlignment(Alignment.BOTTOM_CENTER);
         setWidth("100%");
         setHeightUndefined();

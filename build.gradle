@@ -1,0 +1,244 @@
+import liquibase.integration.commandline.Main
+
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'idea'
+apply plugin: 'war'
+apply plugin: 'jetty'
+apply plugin: 'liquibase'
+apply plugin: 'eclipse'
+
+def git_path = ''
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.6'
+}
+
+/*
+ * Gets the version name from the latest Git tag
+ */
+def getVersionName = { ->
+    println ":getVersionNumber"
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine "${git_path}git", "describe", "--tags"
+        standardOutput = stdout
+    }
+    return stdout.toString().trim()
+}
+
+targetCompatibility = '1.7'
+sourceCompatibility = '1.7'
+group = 'com.toastedbits'
+version = '1.0-SNAPSHOT'
+
+mainClassName = "ru.ncedu.onlineshop.Main" // for the run task
+
+class LiquibaseTask extends DefaultTask {
+    String command
+    String url, password, username
+    File changeLog
+
+    @TaskAction
+    def liquibaseAction() {
+        def args = [
+                "--url=${url}",
+                "--password=${password}",
+                "--username=${username}",
+                "--changeLogFile=${changeLog.path}",
+                command
+        ]
+
+        Main.main(args as String[])
+    }
+}
+
+class LiquibaseTaskExt extends DefaultTask {
+    String command
+    String url, password, username, refurl, refusername, refpassword
+    File changeLog
+
+    @TaskAction
+    def liquibaseAction() {
+        def args = [
+                "--url=${url}",
+                "--password=${password}",
+                "--username=${username}",
+                "--changeLogFile=${changeLog.path}",
+                "--referenceUrl=${refurl}",
+                "--referenceUsername=${refusername}",
+                "--referencePassword=${refpassword}",
+                command
+
+        ]
+
+        Main.main(args as String[])
+    }
+}
+
+task generatedDiffChangelogXML(type: LiquibaseTaskExt) {
+    url = 'jdbc:h2:db_shop'
+    username = 'admin'
+    password = 'admin'
+    changeLog = file('src/main/resources/changelogDiff.xml')
+    refurl = 'jdbc:postgresql://ec2-174-129-21-42.compute-1.amazonaws.com:5432/dd0epin4ddjra5?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory'
+    refusername = 'yhcqndruiocgbq'
+    refpassword = 'Ua3hvYlo1iW5b39fnDkbjDZ1-r'
+    command = 'diffChangeLog'
+}
+
+task generateChangelogXML(type: LiquibaseTask) {
+    url = 'jdbc:h2:C:/NetCracker/proj/OnlineShop/db'
+    username = 'admin'
+    password = 'admin'
+    changeLog = file('src/main/resources/changelog.xml')
+    command = 'generateChangeLog'
+}
+
+task generateDB(type: LiquibaseTask) {
+    url = 'jdbc:postgresql://ec2-174-129-21-42.compute-1.amazonaws.com:5432/dd0epin4ddjra5?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory'
+    username = 'yhcqndruiocgbq'
+    password = 'Ua3hvYlo1iW5b39fnDkbjDZ1-r'
+    changeLog = file('src/main/resources/changelog.xml')
+    command = 'update'
+}
+
+compileJava {
+    dependsOn clean
+}
+
+run {
+    dependsOn test
+}
+
+compileTestJava {
+    dependsOn compileJava
+}
+
+test {
+    dependsOn compileTestJava
+    testLogging {
+        events "passed", "skipped", "failed"
+        exceptionFormat "full"
+        showStandardStreams = true
+    }
+}
+
+task copyDependencies(type: Copy) {
+    from configurations.runtime
+    into "$buildDir/dist/libs"
+}
+
+jettyRun{
+    contextPath = '' // and Jetty will run on the localhost:port/
+    jettyEnvXml = file('src/main/webapp/WEB-INF/jetty-env.xml')
+}
+
+httpPort = System.getenv('PORT') ? System.getenv('PORT') as int : 8080
+stopPort = 8090
+stopKey = 'stopKey'
+
+jettyRunWar{
+    contextPath = '' // and Jetty will run on the localhost:port/
+}
+
+task(runDebug, dependsOn: 'classes', type: JavaExec) {
+    main = "ru.ncedu.onlineshop.Main"
+    classpath = sourceSets.main.runtimeClasspath
+    jvmArgs = ["-Xdebug"]
+}
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    runtimeOnly
+}
+
+def springVersion = '3.2.5'//'4.1.4'
+def springSecurityVersion = '3.2.5'
+
+dependencies {
+    compile 'uk.com.robust-it:cloning:1.9.0'
+    compile 'com.google.guava:guava:18.0'
+    compile 'org.mockito:mockito-all:1.9.5'
+    compile 'org.slf4j:slf4j-log4j12:1.7.7'
+    compile 'org.apache.activemq:activemq-core:5.7.0'
+
+    compile 'org.springframework:spring-test:' + springVersion + '.RELEASE'
+    compile 'org.springframework:spring-core:' + springVersion + '.RELEASE'
+    compile 'org.springframework:spring-jms:' + springVersion + '.RELEASE'
+    compile 'org.springframework:spring-web:' + springVersion + '.RELEASE'
+    compile 'org.springframework:spring-tx:' + springVersion + '.RELEASE'
+    compile 'org.springframework:spring-orm:' + springVersion + '.RELEASE'
+    compile 'org.springframework:spring-context:' + springVersion + '.RELEASE'
+    compile 'org.springframework.security:spring-security-core:' + springSecurityVersion + '.RELEASE'
+    compile 'org.springframework.security:spring-security-web:' + springSecurityVersion + '.RELEASE'
+    compile 'org.springframework.security:spring-security-config:' + springSecurityVersion + '.RELEASE'
+
+    compile 'com.vaadin:vaadin-themes:7.3.1'
+    compile 'com.vaadin:vaadin-server:7.3.1'
+    compile 'com.vaadin:vaadin-client-compiled:7.3.1'
+
+    compile 'postgresql:postgresql:9.1-901.jdbc4'
+    compile 'org.postgresql:postgresql:9.3-1100-jdbc41'
+
+    compile 'org.hibernate:hibernate-entitymanager:4.3.5.Final'
+    compile 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final'
+    compile 'org.hibernate:hibernate-ehcache:4.3.5.Final'
+
+    compile "org.eclipse.jetty.aggregate:jetty-all:9+"
+    runtime "org.eclipse.jetty:jetty-jsp:9+"
+
+    providedCompile 'org.jboss.spec.javax.servlet:jboss-servlet-api_3.0_spec:1.0.2.Final'
+    runtime 'javax.servlet:jstl:1.1.2'
+    runtime 'com.h2database:h2:1.3.173'
+    runtime 'org.postgresql:postgresql:9.3-1100-jdbc41'
+
+    // to run our App on Heroku
+    runtimeOnly "org.mortbay.jetty:jetty-runner:8.1.1.v20120215"
+    // monitoring on Heroku
+    runtimeOnly "com.newrelic.agent.java:newrelic-agent:2.18.0"
+
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+
+    }
+    dependencies {
+        classpath 'net.saliman:gradle-liquibase-plugin:1.0.0'
+        classpath 'com.h2database:h2:1.3.160'
+        classpath 'org.postgresql:postgresql:9.3-1100-jdbc41'
+    }
+}
+
+task copyToLib << {
+    copy {
+        from configurations.runtimeOnly.copy().setTransitive(false)
+        into "$buildDir/libs"
+        rename { name ->
+            def artifacts = configurations.runtimeOnly.resolvedConfiguration.resolvedArtifacts
+            def artifact = artifacts.find { it.file.name == name }
+            "${artifact.name}.${artifact.extension}"
+        }
+    }
+}
+
+jar {
+    dependsOn compileJava
+    manifest.attributes ('Main-Class' : 'ru.ncedu.onlineshop.Main',
+            'Class-Path' :  configurations.runtime.collect {"libs/${it.name}"}.join(' ') )
+    destinationDir = file("$buildDir/dist")
+}
+
+// use '-x test' to exclude the test task from the dist task
+task dist {
+    dependsOn clean, compileJava, test, copyDependencies, jar
+}
+
+task stage(dependsOn: ["clean", "jettyRun"])

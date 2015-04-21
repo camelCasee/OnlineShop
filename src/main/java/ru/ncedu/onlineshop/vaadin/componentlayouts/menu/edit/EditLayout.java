@@ -4,7 +4,9 @@ import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Notification;
+import com.vaadin.ui.themes.ValoTheme;
 import ru.ncedu.onlineshop.entity.product.ProductType;
+import ru.ncedu.onlineshop.vaadin.ShopUI;
 import ru.ncedu.onlineshop.vaadin.componentlayouts.menu.ProductTypeTreeLayout;
 
 /**
@@ -27,8 +29,10 @@ public class EditLayout extends HorizontalLayout {
 //        deleteTypeButton = new Button("Delete");
 //        addDeleteButtonClickListener();
         editTypeButton = new Button("Edit");
+        editTypeButton.setStyleName(ValoTheme.BUTTON_SMALL);
         addEditButtonClickListener();
         addTypeButton = new Button("Add");
+        addTypeButton.setStyleName(ValoTheme.BUTTON_SMALL);
         addAddButtonClickListener();
     }
 
@@ -69,11 +73,15 @@ public class EditLayout extends HorizontalLayout {
     }
 
     private void setupLayout() {
-        setStyleName("outlined");
-        //setMargin(true);
+        //setStyleName("outlined");
+        setImmediate(true);
+        setMargin(true);
         setSpacing(true);
+        addStyleName(ShopUI.Styles.SMALL_MARGINS);
+        addStyleName(ShopUI.Styles.SMALL_SPACING);
         setDefaultComponentAlignment(Alignment.BOTTOM_CENTER);
-        setSizeFull();
+        setWidthUndefined();
+//        setSizeFull();
 //        setWidth("100%");
 //        setHeightUndefined();
     }

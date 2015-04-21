@@ -2,7 +2,6 @@ package ru.ncedu.onlineshop.vaadin.page;
 
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.TabSheet;
 import org.springframework.context.ApplicationContext;
@@ -77,7 +76,7 @@ public class ManagerPage extends UserPage {
             serviceAPI = (ServiceAPI) context.getBean("serviceAPI");
             orderService = (OrderService) context.getBean("orderService");
             userService = (UserService) context.getBean("userService");
-            titleLayout.addComponent(new Label("MANAGERRRRRR"));
+            //titleLayout.addComponent(new Label("MANAGERRRRRR"));
             addOrderManagementLayout();
             addUsersTableLayout();
             tabSheet.addSelectedTabChangeListener(new TabSheet.SelectedTabChangeListener() {

@@ -3,10 +3,8 @@ package ru.ncedu.onlineshop.vaadin.componentlayouts.security;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.ui.*;
 import org.springframework.context.ApplicationContext;
-import ru.ncedu.onlineshop.CustomMessageSender;
-import ru.ncedu.onlineshop.entity.users.User;
 import ru.ncedu.onlineshop.security.AuthenticationService;
-import ru.ncedu.onlineshop.service.UserService;
+import ru.ncedu.onlineshop.vaadin.ShopUI;
 import ru.ncedu.onlineshop.vaadin.page.BasePage;
 import ru.ncedu.onlineshop.vaadin.page.UserPage;
 
@@ -82,46 +80,41 @@ public class AuthenticationComponent extends HorizontalLayout implements Button.
 
     private VerticalLayout createSignInForm() {
         state = AuthenticationComponentState.LOGIN;
+
         VerticalLayout signInForm = new VerticalLayout();
-//        signInForm.setMargin(true);
-//        signInForm.setSpacing(true);
+        signInForm.setMargin(true);
+        signInForm.setSpacing(true);
+        signInForm.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
+        signInForm.addStyleName(ShopUI.Styles.SMALL_MARGINS);
+        signInForm.addStyleName(ShopUI.Styles.SMALL_SPACING);
         signInForm.setSizeFull();
 
         usernameField = new TextField("Username:", "");
-        //usernameField.setSizeFull();
         passwordField = new PasswordField("Password:", "");
-        //passwordField.setSizeFull();
-        signInForm.addComponent(usernameField);
-        //signInForm.setExpandRatio(usernameField, 1.0f);
-        signInForm.addComponent(passwordField);
-        //signInForm.setExpandRatio(passwordField, 1.0f);
 
         HorizontalLayout buttonsLayout = new HorizontalLayout();
         buttonsLayout.setSizeFull();
-        //buttonsLayout.setMargin(true);
+        buttonsLayout.setSpacing(true);
+        buttonsLayout.addStyleName(ShopUI.Styles.SMALL_SPACING);
         signInButton = new Button("Sign In", this);
-        //signInButton.setSizeFull();
         signUpButton = new Button("Sign Up", this);
-        //signUpButton.setSizeFull();
-        buttonsLayout.addComponent(signInButton);
-        //buttonsLayout.setExpandRatio(signInButton, 1.0f);
-        buttonsLayout.addComponent(signUpButton);
-        //buttonsLayout.setExpandRatio(signUpButton, 1.0f);
-        signInForm.addComponent(buttonsLayout);
+        buttonsLayout.addComponents(signInButton, signUpButton);
+
+        signInForm.addComponents(usernameField, passwordField, buttonsLayout);
 
         return signInForm;
     }
 
     private VerticalLayout createLogoutForm() {
         state = AuthenticationComponentState.LOGOUT;
+
         VerticalLayout logoutForm = new VerticalLayout();
         logoutForm.setSizeFull();
         logoutForm.setMargin(true);
+        logoutForm.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
 
         logoutButton = new Button("Logout", this);
-        logoutButton.setSizeFull();
         logoutForm.addComponent(logoutButton);
-        logoutForm.setExpandRatio(logoutButton, 1.f);
 
         return logoutForm;
     }
@@ -130,6 +123,10 @@ public class AuthenticationComponent extends HorizontalLayout implements Button.
         VerticalLayout signUpForm = new VerticalLayout();
         signUpForm.setSizeFull();
         signUpForm.setMargin(true);
+        signUpForm.setSpacing(true);
+        signUpForm.addStyleName(ShopUI.Styles.SMALL_MARGINS);
+        signUpForm.addStyleName(ShopUI.Styles.SMALL_SPACING);
+        signUpForm.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
 
         usernameField = new TextField("Username:", "");
         passwordField = new PasswordField("Password:", "");
@@ -137,12 +134,15 @@ public class AuthenticationComponent extends HorizontalLayout implements Button.
         firstNameField = new TextField("First name:");
         secondNameField = new TextField("Second name:");
 
-        signUpForm.addComponent(usernameField);
-        signUpForm.addComponent(passwordField);
-        signUpForm.addComponent(repeatPasswordField);
-        signUpForm.addComponent(firstNameField);
-        signUpForm.addComponent(secondNameField);
-        signUpForm.addComponent(signUpButton);
+        signUpForm.addComponents(
+                usernameField,
+                passwordField,
+                repeatPasswordField,
+                firstNameField,
+                secondNameField,
+                signUpButton
+        );
+
         return signUpForm;
     }
 

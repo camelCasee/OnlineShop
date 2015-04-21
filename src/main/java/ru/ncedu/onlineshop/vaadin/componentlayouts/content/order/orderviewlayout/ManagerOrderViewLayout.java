@@ -1,6 +1,7 @@
 package ru.ncedu.onlineshop.vaadin.componentlayouts.content.order.orderviewlayout;
 
-import com.vaadin.ui.*;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Notification;
 import ru.ncedu.onlineshop.entity.order.Order;
 import ru.ncedu.onlineshop.exception.IncorrectStateException;
 import ru.ncedu.onlineshop.service.OrderService;
@@ -9,7 +10,6 @@ import ru.ncedu.onlineshop.vaadin.componentlayouts.content.order.ordertablelayou
 import ru.ncedu.onlineshop.vaadin.componentlayouts.content.productgrouplyaouts.OrderProductListLayout;
 
 import javax.persistence.OptimisticLockException;
-import javax.persistence.RollbackException;
 
 /**
  * Created by ali on 02.02.15.

@@ -3,14 +3,13 @@ package ru.ncedu.onlineshop.vaadin.page;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.server.Resource;
+import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 import org.springframework.context.ApplicationContext;
-import ru.ncedu.onlineshop.service.ServiceAPI;
-import ru.ncedu.onlineshop.vaadin.componentlayouts.menu.ProductTypeTreeLayout;
+import ru.ncedu.onlineshop.vaadin.ShopUI;
 import ru.ncedu.onlineshop.vaadin.componentlayouts.security.AuthenticationComponent;
-
-import javax.naming.AuthenticationException;
 
 /**
  * Created by ali on 01.01.15.
@@ -45,17 +44,34 @@ public abstract class BasePage extends HorizontalLayout implements View {
         authenticationPanel.setSizeFull();
         authenticationLayout.addComponent(authenticationPanel);
         authenticationLayout.setSizeFull();
+
+        authenticationLayout.setImmediate(true);
+        authenticationLayout.setSpacing(true);
+        authenticationLayout.setMargin(true);
+        authenticationLayout.addStyleName(ShopUI.Styles.SMALL_MARGINS);
+        authenticationLayout.addStyleName(ShopUI.Styles.SMALL_SPACING);
+        authenticationLayout.addStyleName(ShopUI.Styles.ANIMATION_SLIDE_UP);
+        authenticationLayout.addStyleName(ShopUI.Styles.ANIMATION_FADE_IN);
     }
 
-    private void addTitleLayout(){
-        Label title = new Label("There will be beautiful title image");
-        titleLayout.addComponent(title);
-        titleLayout.setSizeFull();
-        titleLayout.setComponentAlignment(title, Alignment.MIDDLE_CENTER);
+    private void addTitleLayout() {
+        Resource resource = new ThemeResource("img/logo.png");
+//        Label title = new Label("Shop");
+        Image logo = new Image(null, resource);
+//        title.addStyleName(ValoTheme.LABEL_HUGE);
+//        title.setWidthUndefined();
+        titleLayout.addComponent(logo);
+        titleLayout.setWidth("30%");
+        titleLayout.setComponentAlignment(logo, Alignment.MIDDLE_CENTER);
     }
 
     private void configureRightLayout(){
         addAuthenticationLayout();
+
+        rightLayout.setSpacing(true);
+        rightLayout.setMargin(true);
+        rightLayout.addStyleName(ShopUI.Styles.SMALL_MARGINS);
+        rightLayout.addStyleName(ShopUI.Styles.SMALL_SPACING);
 
         rightLayout.addComponent(authenticationLayout);
         rightLayout.setExpandRatio(authenticationLayout, 3.0f);
@@ -68,6 +84,7 @@ public abstract class BasePage extends HorizontalLayout implements View {
         tabSheet.setSizeFull();
         tabSheet.addStyleName(ValoTheme.TABSHEET_FRAMED);
         tabSheet.addStyleName(ValoTheme.TABSHEET_PADDED_TABBAR);
+        tabSheet.addStyleName(ValoTheme.TABSHEET_CENTERED_TABS);
         contentLayout.addComponent(tabSheet);
         contentLayout.setSizeFull();
 
@@ -75,6 +92,7 @@ public abstract class BasePage extends HorizontalLayout implements View {
         leftLayout.addComponent(contentLayout);
         leftLayout.setExpandRatio(titleLayout, 2.0f);
         leftLayout.setExpandRatio(contentLayout, 8.0f);
+        leftLayout.setComponentAlignment(titleLayout, Alignment.TOP_CENTER);
         leftLayout.setSizeFull();
     }
     

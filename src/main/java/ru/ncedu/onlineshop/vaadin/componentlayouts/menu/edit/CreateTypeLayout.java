@@ -11,7 +11,7 @@ import ru.ncedu.onlineshop.vaadin.componentlayouts.menu.ProductTypeTreeLayout;
 public class CreateTypeLayout extends EditTypeLayout {
 
     public CreateTypeLayout(ProductTypeTreeLayout parentLayout) {
-        super(new ProductType("new product type"), parentLayout);
+        super(new ProductType("New product type"), parentLayout);
         type.setParentType(nullSelectionProductType);
     }
 

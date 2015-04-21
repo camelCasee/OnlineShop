@@ -2,17 +2,14 @@ package ru.ncedu.onlineshop.vaadin.componentlayouts.security;
 
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.event.ItemClickEvent;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Table;
-import com.vaadin.ui.VerticalLayout;
-import ru.ncedu.onlineshop.entity.order.Order;
+import com.vaadin.ui.*;
+import com.vaadin.ui.themes.ValoTheme;
 import ru.ncedu.onlineshop.entity.users.User;
 import ru.ncedu.onlineshop.service.OrderService;
 import ru.ncedu.onlineshop.service.ServiceAPI;
 import ru.ncedu.onlineshop.service.UserService;
+import ru.ncedu.onlineshop.vaadin.ShopUI;
 import ru.ncedu.onlineshop.vaadin.componentlayouts.content.order.ordertablelayout.UserOrderTableLayout;
-import ru.ncedu.onlineshop.vaadin.componentlayouts.content.order.orderviewlayout.UserOrderViewLayout;
 
 import java.util.List;
 
@@ -70,6 +67,11 @@ public class UsersTableLayout extends HorizontalLayout {
 
         // переупорядычивание колонок и обработчик выделения юзера
         userTable.setVisibleColumns(new Object[]{"id", "username", "password"});
+
+        userTable.addStyleName(ValoTheme.TABLE_NO_HORIZONTAL_LINES);
+        userTable.addStyleName(ValoTheme.TABLE_SMALL);
+        userTable.addStyleName(ShopUI.Styles.ANIMATION_SLIDE_RIGHT);
+
 //        updateOrders();
         userTable.addItemClickListener(new ItemClickEvent.ItemClickListener() {
             @Override
@@ -97,7 +99,19 @@ public class UsersTableLayout extends HorizontalLayout {
 
         tableLayout.addComponent(orderOnBehalf);
         tableLayout.addComponent(updateTableButton);
+        updateTableButton.addStyleName(ValoTheme.BUTTON_SMALL);
+        updateTableButton.addStyleName(ShopUI.Styles.ANIMATION_SLIDE_RIGHT);
+        orderOnBehalf.addStyleName(ValoTheme.BUTTON_SMALL);
+        orderOnBehalf.addStyleName(ShopUI.Styles.ANIMATION_SLIDE_RIGHT);
+
         addComponent(tableLayout);
+
+        tableLayout.setImmediate(true);
+        tableLayout.setMargin(true);
+        tableLayout.setSpacing(true);
+        tableLayout.addStyleName(ShopUI.Styles.SMALL_MARGINS);
+        tableLayout.addStyleName(ShopUI.Styles.SMALL_SPACING);
+        tableLayout.setDefaultComponentAlignment(Alignment.TOP_CENTER);
     }
 
     protected List<User> userList;

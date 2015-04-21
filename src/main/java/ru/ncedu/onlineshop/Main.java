@@ -19,16 +19,12 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import ru.ncedu.onlineshop.entity.product.Manufacturer;
 import ru.ncedu.onlineshop.entity.product.Product;
-import ru.ncedu.onlineshop.entity.product.ProductType;
 import ru.ncedu.onlineshop.entity.users.User;
 import ru.ncedu.onlineshop.service.ServiceAPI;
 import ru.ncedu.onlineshop.service.UserService;
 
 import java.util.List;
 
-/**
- * Created by Никита on 08.09.14.
- */
 public class Main {
     public static void main(String[] args) throws Exception {
         ApplicationContext context = new FileSystemXmlApplicationContext("src/main/webapp/WEB-INF/config/spring-config.xml");
