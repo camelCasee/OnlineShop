@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
+
+    <persistence-unit name="onlineshopPersistence" transaction-type="RESOURCE_LOCAL">
+        <class>ru.ncedu.onlineshop.entity.product.ProductSize</class>
+        <class>ru.ncedu.onlineshop.entity.product.Product</class>
+        <class>ru.ncedu.onlineshop.entity.product.Manufacturer</class>
+        <class>ru.ncedu.onlineshop.entity.product.Parameter</class>
+        <class>ru.ncedu.onlineshop.entity.product.ProductField</class>
+        <class>ru.ncedu.onlineshop.entity.product.ProductType</class>
+        <class>ru.ncedu.onlineshop.entity.product.ProductStorage</class>
+        <class>ru.ncedu.onlineshop.entity.users.User</class>
+        <class>ru.ncedu.onlineshop.entity.users.Authority</class>
+        <class>ru.ncedu.onlineshop.entity.users.AuditItem</class>
+        <class>ru.ncedu.onlineshop.entity.order.Order</class>
+        <class>ru.ncedu.onlineshop.entity.order.OrderItem</class>
+        <shared-cache-mode>ALL</shared-cache-mode>
+
+        <!--<properties>-->
+            <!--<property name="javax.persistence.cache.storeMode" value='USE'/>-->
+            <!--<property name="javax.persistence.cache.retrieveMode" value='USE'/>-->
+
+            <!--&lt;!&ndash;<property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="javax.persistence.jdbc.url" value="jdbc:h2:db" />&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="javax.persistence.jdbc.user" value="admin" />&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="javax.persistence.jdbc.password" value="admin" />&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="hibernate.hbm2ddl.auto" value="create" />&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />&ndash;&gt;-->
+        <!--</properties>-->
+    </persistence-unit>
+
+
+    <persistence-unit name="onlineshopPersistenceTest" transaction-type="RESOURCE_LOCAL">
+        <class>ru.ncedu.onlineshop.entity.product.ProductSize</class>
+        <class>ru.ncedu.onlineshop.entity.product.Product</class>
+        <class>ru.ncedu.onlineshop.entity.product.Manufacturer</class>
+        <class>ru.ncedu.onlineshop.entity.product.Parameter</class>
+        <class>ru.ncedu.onlineshop.entity.product.ProductField</class>
+        <class>ru.ncedu.onlineshop.entity.product.ProductType</class>
+        <class>ru.ncedu.onlineshop.entity.product.ProductStorage</class>
+        <class>ru.ncedu.onlineshop.entity.users.User</class>
+        <class>ru.ncedu.onlineshop.entity.users.Authority</class>
+        <class>ru.ncedu.onlineshop.entity.users.AuditItem</class>
+        <class>ru.ncedu.onlineshop.entity.order.Order</class>
+        <class>ru.ncedu.onlineshop.entity.order.OrderItem</class>
+        <!--<properties>-->
+        <!--<property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />-->
+        <!--<property name="javax.persistence.jdbc.url" value="jdbc:h2:db" />-->
+        <!--<property name="javax.persistence.jdbc.user" value="admin" />-->
+        <!--<property name="javax.persistence.jdbc.password" value="admin" />-->
+        <!--<property name="hibernate.hbm2ddl.auto" value="create" />-->
+        <!--<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />-->
+        <!--</properties>-->
+    </persistence-unit>
+
+</persistence>

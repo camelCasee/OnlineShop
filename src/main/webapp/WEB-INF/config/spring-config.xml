@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--suppress SpringSecurityFiltersConfiguredInspection -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:cache="http://www.springframework.org/schema/cache"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+                           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+                           http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
+                           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+                           http://www.springframework.org/schema/aop
+                           http://www.springframework.org/schema/aop/spring-aop-3.0.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
+
+    <context:annotation-config/>
+    <context:component-scan base-package="ru.ncedu.onlineshop.service, ru.ncedu.onlineshop.entity.order"></context:component-scan>
+
+
+    <!--======== JMS  =======-->
+    <!--
+    Use Springs JNDI support to look up JMS Connection Factory and Queue definitions from the
+    container. This means that specific connection details are not embedded in the application
+    -->
+    <!--<jee:jndi-lookup id="mqConnectionFactory" jndi-name="java:comp/env/jms/mqConnectionFactory" />-->
+    <!--<jee:jndi-lookup id="ordersQueue" jndi-name="java:comp/env/jms/ordersQueue" />-->
+
+    <!--&lt;!&ndash;&lt;!&ndash; Implementation of the JMS MessageListener interface &ndash;&gt;&ndash;&gt;-->
+    <!--<bean id="customMessageListener" class="ru.ncedu.onlineshop.CustomMessageListener" scope = "singleton">-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash;&lt;!&ndash;&ndash;&gt;-->
+        <!--&lt;!&ndash;DefaultMessageListenerConatiner is the Spring equivalent to an EJB Message Driven Bean.&ndash;&gt;-->
+        <!--&lt;!&ndash;It polls and consumes messages from a JMS queue. The configuration below is as follows&ndash;&gt;-->
+
+        <!--&lt;!&ndash;1. connectionFactory - the connection factory definition used to connect to the Broker&ndash;&gt;-->
+        <!--&lt;!&ndash;2. destination - the Queue that is listening on from incoming messages (manually created in the broker)&ndash;&gt;-->
+        <!--&lt;!&ndash;3. messageListener - handles the incoming messages&ndash;&gt;-->
+        <!--&lt;!&ndash;4. concurrentConsumers - the number of threads that the DeafultMesaegListenerContainer will&ndash;&gt;-->
+           <!--&lt;!&ndash;spawn to handle incoming messages. The default is 1.&ndash;&gt;-->
+    <!--&lt;!&ndash;&ndash;&gt;&ndash;&gt;-->
+    <!--<bean id="poiMessageListenerContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">-->
+        <!--<property name="connectionFactory" ref ="mqConnectionFactory" />-->
+        <!--<property name="destination" ref ="ordersQueue"/>-->
+        <!--<property name="messageListener" ref ="customMessageListener"/>-->
+        <!--&lt;!&ndash;<property name="concurrentConsumers" value="2" />&ndash;&gt;-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash;&lt;!&ndash; MessageSender is supplied with a JMSTemplate and the destination Queue &ndash;&gt;&ndash;&gt;-->
+    <!--<bean id="customMessageSender" class="ru.ncedu.onlineshop.CustomMessageSender">-->
+        <!--<property name="jmsTemplate" ref="jmsTemplate"/>-->
+        <!--<property name="ordersQueue" ref="ordersQueue"/>-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash;&lt;!&ndash;&ndash;&gt;-->
+        <!--&lt;!&ndash;Spring template that allows us to communicate with a message broker via JMS. JMSTemplate takes care of boiler&ndash;&gt;-->
+        <!--&lt;!&ndash;plate code such as exception handling and resource management such as connection pooling.&ndash;&gt;-->
+    <!--&lt;!&ndash;&ndash;&gt;&ndash;&gt;-->
+    <!--<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">-->
+        <!--<property name="connectionFactory" ref="mqConnectionFactory" />-->
+        <!--<property name="defaultDestination" ref="ordersQueue" />-->
+    <!--</bean>-->
+
+    <!-- DB -->
+    <!--<bean id="dataSource"-->
+          <!--class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+        <!--<property name="driverClassName" value="org.postgresql.Driver" />-->
+        <!--<property name="url" value='jdbc:postgresql://ec2-174-129-21-42.compute-1.amazonaws.com:5432/dd0epin4ddjra5?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory' />-->
+        <!--<property name="username" value="yhcqndruiocgbq" />-->
+        <!--<property name="password" value="Ua3hvYlo1iW5b39fnDkbjDZ1-r" />-->
+    <!--</bean>-->
+
+    <!--<bean id="dataSource"-->
+        <!--class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+        <!--<property name="driverClassName" value="org.postgresql.Driver" />-->
+        <!--<property name="url" value='jdbc:postgresql://ec2-107-21-93-97.compute-1.amazonaws.com:5432/df1vhtebp3bbk7?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory' />-->
+        <!--<property name="username" value="iahwgkyggfpetw" />-->
+        <!--<property name="password" value="VcTqocJEYtgIctU4SotK-tqYNX" />-->
+    <!--</bean>-->
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.h2.Driver" />
+        <property name="url" value='jdbc:h2:file:db_shop' />
+        <property name="username" value="admin" />
+        <property name="password" value="admin" />
+    </bean>
+
+    <bean id="entityManagerFactory"
+          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml" />
+        <property name="persistenceUnitName" value="onlineshopPersistence" />
+        <property name="dataSource" ref="dataSource" />
+        <property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
+        <property name="jpaDialect" ref="jpaDialect" />
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+                <prop key="hibernate.cache.use_second_level_cache">true</prop>
+                <prop key="hibernate.cache.use_structured_entries">true</prop>
+                <prop key="hibernate.cache.use_query_cache">true</prop>
+                <prop key="hibernate.cache.provider_class"> org.hibernate.cache.EhCacheProvider"</prop>
+                <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
+                <prop key="hibernate.generate_statistics">true</prop>
+                <prop key="hibernate.show_sql">true</prop>
+
+                <!--<prop key="javax.persistence.cache.storeMode">USE</prop>-->
+                <!--<prop key="javax.persistence.cache.storeMode">USE</prop>-->
+                <!--<prop key="javax.persistence.cache.retrieveMode">USE</prop>-->
+            </props>
+        </property>
+    </bean>
+
+    <bean id="jpaVendorAdapter"
+          class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+        <property name="database" value="H2" />
+        <property name="databasePlatform" value="org.hibernate.dialect.H2Dialect" />
+    </bean>
+
+    <bean id="jpaDialect" class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
+
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+        <property name="dataSource" ref="dataSource" />
+        <property name="jpaDialect" ref="jpaDialect" />
+    </bean>
+
+
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <!--&lt;!&ndash; Server &ndash;&gt;-->
+    <!--<bean name="webappContext" class="org.eclipse.jetty.webapp.WebAppContext">-->
+        <!--<property name="descriptor" value="/WEB-INF/web.xml"/>-->
+        <!--<property name="resourceBase" value="./src/main/webapp"/> &lt;!&ndash;!!!!!!!!!!!! &ndash;&gt;-->
+        <!--<property name="contextPath" value="/"/>            &lt;!&ndash;!!!!!!!!!!!! &ndash;&gt;-->
+        <!--<property name="parentLoaderPriority" value="true"/> &lt;!&ndash;!!!!!!!!!!!!  #{systemEnvironment['PORT']} &ndash;&gt;-->
+    <!--</bean>-->
+
+    <!--<bean name="handlerList" class="org.eclipse.jetty.server.handler.HandlerList">-->
+        <!--<property name="handlers">-->
+            <!--<list value-type="org.eclipse.jetty.server.Handler">-->
+                <!--<ref bean="webappContext"/>-->
+                <!--<bean class="org.eclipse.jetty.server.handler.DefaultHandler"/>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <!--<bean name="server" class="org.eclipse.jetty.server.Server">-->
+        <!--<constructor-arg value="8080"/>-->
+        <!--<property name="handler" ref="handlerList"/>-->
+    <!--</bean>-->
+
+    <bean id="shoppingCartService" class="ru.ncedu.onlineshop.spring.ShoppingCartService" scope="session">
+        <!-- This requires CGLIB -->
+        <aop:scoped-proxy/>
+    </bean>
+
+    <bean id="authenticationService" class="ru.ncedu.onlineshop.security.AuthenticationService" scope="session">
+        <!-- This requires CGLIB -->
+        <aop:scoped-proxy/>
+    </bean>
+
+    <!--<cache:annotation-driven />-->
+    <!--<bean id='cacheManager'-->
+          <!--class='org.springframework.cache.ehcache.EhCacheCacheManager'-->
+          <!--cacheManager-ref='ehcache'/>-->
+
+    <!--<bean id='ehcache' class='org.springframework.cache.ehcache.EhCacheManagerFactoryBean'-->
+          <!--configLocation='ehcache.xml'-->
+          <!--shared='true'/>-->
+
+
+</beans>

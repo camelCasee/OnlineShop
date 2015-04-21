@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet author="ali (generated)" id="1419930358832-1">
+        <createSequence sequenceName="hibernate_sequence"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930358832-2">
+        <createTable tableName="audit">
+            <column name="audit_item_id" type="INT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="message" type="VARCHAR(255)"/>
+            <column name="time" type="date"/>
+            <column name="user_id" type="INT8">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930358832-3">
+        <createTable tableName="authorities">
+            <column name="authority_id" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+            <column name="authority" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930358832-4">
+        <createTable tableName="manufacturers">
+            <column name="manufacturer_id" type="INT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="country" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930358832-5">
+        <createTable tableName="parameters">
+            <column name="parameter_id" type="INT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="VARCHAR(255)"/>
+            <column name="field_id" type="INT8"/>
+            <column name="product_id" type="INT8">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930358832-6">
+        <createTable tableName="product_fields">
+            <column name="product_field_id" type="INT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="type_id" type="INT8"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930358832-7">
+        <createTable tableName="product_sizes">
+            <column name="product_size_id" type="INT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="height" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="length" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="width" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930358832-8">
+        <createTable tableName="product_types">
+            <column name="product_type_id" type="INT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930358832-9">
+        <createTable tableName="products">
+            <column name="product_id" type="INT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="price" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="weight" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="manufacturer_id" type="INT8"/>
+            <column name="size_id" type="INT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type_id" type="INT8"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930358832-10">
+        <createTable tableName="users">
+            <column name="user_id" type="INT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="accountnonexpired" type="BOOL">
+                <constraints nullable="false"/>
+            </column>
+            <column name="accountnonlocked" type="BOOL">
+                <constraints nullable="false"/>
+            </column>
+            <column name="credentialsnonexpired" type="BOOL">
+                <constraints nullable="false"/>
+            </column>
+            <column name="enabled" type="BOOL">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(255)"/>
+            <column name="username" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930358832-11">
+        <addPrimaryKey columnNames="user_id" constraintName="audit_pkey" tableName="audit"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930358832-12">
+        <addPrimaryKey columnNames="authority_id" constraintName="authorities_pkey" tableName="authorities"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930358832-13">
+        <addPrimaryKey columnNames="manufacturer_id" constraintName="manufacturers_pkey" tableName="manufacturers"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930358832-14">
+        <addPrimaryKey columnNames="parameter_id" constraintName="parameters_pkey" tableName="parameters"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930358832-15">
+        <addPrimaryKey columnNames="product_field_id" constraintName="product_fields_pkey" tableName="product_fields"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930358832-16">
+        <addPrimaryKey columnNames="product_size_id" constraintName="product_sizes_pkey" tableName="product_sizes"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930358832-17">
+        <addPrimaryKey columnNames="product_type_id" constraintName="product_types_pkey" tableName="product_types"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930358832-18">
+        <addPrimaryKey columnNames="product_id" constraintName="products_pkey" tableName="products"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930358832-19">
+        <addPrimaryKey columnNames="user_id" constraintName="users_pkey" tableName="users"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930358832-20">
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="parameters" constraintName="fk1b57c1eaa6f3af7d" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="product_id" referencedTableName="products"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930358832-21">
+        <addForeignKeyConstraint baseColumnNames="field_id" baseTableName="parameters" constraintName="fk1b57c1eac739d88" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="product_field_id" referencedTableName="product_fields"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930358832-22">
+        <addForeignKeyConstraint baseColumnNames="authority_id" baseTableName="authorities" constraintName="fk2b0f13211b3aa096" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="authority_id" referencedTableName="authorities"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930358832-23">
+        <addForeignKeyConstraint baseColumnNames="audit_item_id" baseTableName="audit" constraintName="fk58d9bdb10e530ad" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="user_id" referencedTableName="audit"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930358832-24">
+        <addForeignKeyConstraint baseColumnNames="audit_item_id" baseTableName="audit" constraintName="fk58d9bdb6a589df2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="user_id" referencedTableName="users"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930358832-25">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="audit" constraintName="fk58d9bdb8f202d59" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="user_id" referencedTableName="audit"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930358832-26">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="audit" constraintName="fk58d9bdbe8939a9e" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="user_id" referencedTableName="users"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930358832-27">
+        <addForeignKeyConstraint baseColumnNames="size_id" baseTableName="products" constraintName="fkc42bd1642d21664c" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="product_size_id" referencedTableName="product_sizes"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930358832-28">
+        <addForeignKeyConstraint baseColumnNames="type_id" baseTableName="products" constraintName="fkc42bd1647cc8efac" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="product_type_id" referencedTableName="product_types"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930358832-29">
+        <addForeignKeyConstraint baseColumnNames="manufacturer_id" baseTableName="products" constraintName="fkc42bd164ac4919d7" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="manufacturer_id" referencedTableName="manufacturers"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930358832-30">
+        <addForeignKeyConstraint baseColumnNames="type_id" baseTableName="product_fields" constraintName="fkea4314097cc8efac" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="product_type_id" referencedTableName="product_types"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930358832-31">
+        <addUniqueConstraint columnNames="audit_item_id" constraintName="audit_audit_item_id_key" deferrable="false" disabled="false" initiallyDeferred="false" tableName="audit"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930358832-32">
+        <addUniqueConstraint columnNames="name, country" constraintName="manufacturers_name_country_key" deferrable="false" disabled="false" initiallyDeferred="false" tableName="manufacturers"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930358832-33">
+        <addUniqueConstraint columnNames="field_id, product_id, value" constraintName="parameters_field_id_product_id_value_key" deferrable="false" disabled="false" initiallyDeferred="false" tableName="parameters"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930358832-34">
+        <addUniqueConstraint columnNames="name, type_id" constraintName="product_fields_name_type_id_key" deferrable="false" disabled="false" initiallyDeferred="false" tableName="product_fields"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930358832-35">
+        <addUniqueConstraint columnNames="name" constraintName="product_types_name_key" deferrable="false" disabled="false" initiallyDeferred="false" tableName="product_types"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930358832-36">
+        <addUniqueConstraint columnNames="size_id" constraintName="products_size_id_key" deferrable="false" disabled="false" initiallyDeferred="false" tableName="products"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930358832-37">
+        <addUniqueConstraint columnNames="type_id, manufacturer_id, size_id, price, weight, name" constraintName="products_type_id_manufacturer_id_size_id_price_weight_name_key" deferrable="false" disabled="false" initiallyDeferred="false" tableName="products"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-1">
+        <createSequence sequenceName="hibernate_sequence"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-2">
+        <createTable tableName="audit">
+            <column name="audit_item_id" type="INT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="message" type="VARCHAR(255)"/>
+            <column name="time" type="date"/>
+            <column name="user_id" type="INT8">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-3">
+        <createTable tableName="authorities">
+            <column name="authority_id" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+            <column name="authority" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-4">
+        <createTable tableName="manufacturers">
+            <column name="manufacturer_id" type="INT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="country" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-5">
+        <createTable tableName="parameters">
+            <column name="parameter_id" type="INT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="VARCHAR(255)"/>
+            <column name="field_id" type="INT8"/>
+            <column name="product_id" type="INT8">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-6">
+        <createTable tableName="product_fields">
+            <column name="product_field_id" type="INT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="type_id" type="INT8"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-7">
+        <createTable tableName="product_sizes">
+            <column name="product_size_id" type="INT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="height" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="length" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="width" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-8">
+        <createTable tableName="product_types">
+            <column name="product_type_id" type="INT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-9">
+        <createTable tableName="products">
+            <column name="product_id" type="INT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="price" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="weight" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="manufacturer_id" type="INT8"/>
+            <column name="size_id" type="INT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type_id" type="INT8"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-10">
+        <createTable tableName="users">
+            <column name="user_id" type="INT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="accountnonexpired" type="BOOL">
+                <constraints nullable="false"/>
+            </column>
+            <column name="accountnonlocked" type="BOOL">
+                <constraints nullable="false"/>
+            </column>
+            <column name="credentialsnonexpired" type="BOOL">
+                <constraints nullable="false"/>
+            </column>
+            <column name="enabled" type="BOOL">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(255)"/>
+            <column name="username" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-11">
+        <addPrimaryKey columnNames="user_id" constraintName="audit_pkey" tableName="audit"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-12">
+        <addPrimaryKey columnNames="authority_id" constraintName="authorities_pkey" tableName="authorities"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-13">
+        <addPrimaryKey columnNames="manufacturer_id" constraintName="manufacturers_pkey" tableName="manufacturers"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-14">
+        <addPrimaryKey columnNames="parameter_id" constraintName="parameters_pkey" tableName="parameters"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-15">
+        <addPrimaryKey columnNames="product_field_id" constraintName="product_fields_pkey" tableName="product_fields"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-16">
+        <addPrimaryKey columnNames="product_size_id" constraintName="product_sizes_pkey" tableName="product_sizes"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-17">
+        <addPrimaryKey columnNames="product_type_id" constraintName="product_types_pkey" tableName="product_types"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-18">
+        <addPrimaryKey columnNames="product_id" constraintName="products_pkey" tableName="products"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-19">
+        <addPrimaryKey columnNames="user_id" constraintName="users_pkey" tableName="users"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-20">
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="parameters" constraintName="fk1b57c1eaa6f3af7d" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="product_id" referencedTableName="products"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-21">
+        <addForeignKeyConstraint baseColumnNames="field_id" baseTableName="parameters" constraintName="fk1b57c1eac739d88" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="product_field_id" referencedTableName="product_fields"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-22">
+        <addForeignKeyConstraint baseColumnNames="authority_id" baseTableName="authorities" constraintName="fk2b0f13211b3aa096" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="authority_id" referencedTableName="authorities"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-23">
+        <addForeignKeyConstraint baseColumnNames="audit_item_id" baseTableName="audit" constraintName="fk58d9bdb10e530ad" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="user_id" referencedTableName="audit"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-24">
+        <addForeignKeyConstraint baseColumnNames="audit_item_id" baseTableName="audit" constraintName="fk58d9bdb6a589df2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="user_id" referencedTableName="users"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-25">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="audit" constraintName="fk58d9bdb8f202d59" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="user_id" referencedTableName="audit"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-26">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="audit" constraintName="fk58d9bdbe8939a9e" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="user_id" referencedTableName="users"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-27">
+        <addForeignKeyConstraint baseColumnNames="size_id" baseTableName="products" constraintName="fkc42bd1642d21664c" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="product_size_id" referencedTableName="product_sizes"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-28">
+        <addForeignKeyConstraint baseColumnNames="type_id" baseTableName="products" constraintName="fkc42bd1647cc8efac" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="product_type_id" referencedTableName="product_types"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-29">
+        <addForeignKeyConstraint baseColumnNames="manufacturer_id" baseTableName="products" constraintName="fkc42bd164ac4919d7" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="manufacturer_id" referencedTableName="manufacturers"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-30">
+        <addForeignKeyConstraint baseColumnNames="type_id" baseTableName="product_fields" constraintName="fkea4314097cc8efac" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="product_type_id" referencedTableName="product_types"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-31">
+        <addUniqueConstraint columnNames="audit_item_id" constraintName="audit_audit_item_id_key" deferrable="false" disabled="false" initiallyDeferred="false" tableName="audit"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-32">
+        <addUniqueConstraint columnNames="name, country" constraintName="manufacturers_name_country_key" deferrable="false" disabled="false" initiallyDeferred="false" tableName="manufacturers"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-33">
+        <addUniqueConstraint columnNames="field_id, product_id, value" constraintName="parameters_field_id_product_id_value_key" deferrable="false" disabled="false" initiallyDeferred="false" tableName="parameters"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-34">
+        <addUniqueConstraint columnNames="name, type_id" constraintName="product_fields_name_type_id_key" deferrable="false" disabled="false" initiallyDeferred="false" tableName="product_fields"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-35">
+        <addUniqueConstraint columnNames="name" constraintName="product_types_name_key" deferrable="false" disabled="false" initiallyDeferred="false" tableName="product_types"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-36">
+        <addUniqueConstraint columnNames="size_id" constraintName="products_size_id_key" deferrable="false" disabled="false" initiallyDeferred="false" tableName="products"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930546309-37">
+        <addUniqueConstraint columnNames="type_id, manufacturer_id, size_id, price, weight, name" constraintName="products_type_id_manufacturer_id_size_id_price_weight_name_key" deferrable="false" disabled="false" initiallyDeferred="false" tableName="products"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-1">
+        <createSequence sequenceName="hibernate_sequence"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-2">
+        <createTable tableName="audit">
+            <column name="audit_item_id" type="INT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="message" type="VARCHAR(255)"/>
+            <column name="time" type="date"/>
+            <column name="user_id" type="INT8">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-3">
+        <createTable tableName="authorities">
+            <column name="authority_id" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+            <column name="authority" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-4">
+        <createTable tableName="manufacturers">
+            <column name="manufacturer_id" type="INT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="country" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-5">
+        <createTable tableName="parameters">
+            <column name="parameter_id" type="INT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="VARCHAR(255)"/>
+            <column name="field_id" type="INT8"/>
+            <column name="product_id" type="INT8">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-6">
+        <createTable tableName="product_fields">
+            <column name="product_field_id" type="INT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="type_id" type="INT8"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-7">
+        <createTable tableName="product_sizes">
+            <column name="product_size_id" type="INT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="height" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="length" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="width" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-8">
+        <createTable tableName="product_types">
+            <column name="product_type_id" type="INT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-9">
+        <createTable tableName="products">
+            <column name="product_id" type="INT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="price" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="weight" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="manufacturer_id" type="INT8"/>
+            <column name="size_id" type="INT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type_id" type="INT8"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-10">
+        <createTable tableName="users">
+            <column name="user_id" type="INT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="accountnonexpired" type="BOOL">
+                <constraints nullable="false"/>
+            </column>
+            <column name="accountnonlocked" type="BOOL">
+                <constraints nullable="false"/>
+            </column>
+            <column name="credentialsnonexpired" type="BOOL">
+                <constraints nullable="false"/>
+            </column>
+            <column name="enabled" type="BOOL">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(255)"/>
+            <column name="username" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-11">
+        <addPrimaryKey columnNames="user_id" constraintName="audit_pkey" tableName="audit"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-12">
+        <addPrimaryKey columnNames="authority_id" constraintName="authorities_pkey" tableName="authorities"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-13">
+        <addPrimaryKey columnNames="manufacturer_id" constraintName="manufacturers_pkey" tableName="manufacturers"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-14">
+        <addPrimaryKey columnNames="parameter_id" constraintName="parameters_pkey" tableName="parameters"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-15">
+        <addPrimaryKey columnNames="product_field_id" constraintName="product_fields_pkey" tableName="product_fields"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-16">
+        <addPrimaryKey columnNames="product_size_id" constraintName="product_sizes_pkey" tableName="product_sizes"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-17">
+        <addPrimaryKey columnNames="product_type_id" constraintName="product_types_pkey" tableName="product_types"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-18">
+        <addPrimaryKey columnNames="product_id" constraintName="products_pkey" tableName="products"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-19">
+        <addPrimaryKey columnNames="user_id" constraintName="users_pkey" tableName="users"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-20">
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="parameters" constraintName="fk1b57c1eaa6f3af7d" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="product_id" referencedTableName="products"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-21">
+        <addForeignKeyConstraint baseColumnNames="field_id" baseTableName="parameters" constraintName="fk1b57c1eac739d88" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="product_field_id" referencedTableName="product_fields"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-22">
+        <addForeignKeyConstraint baseColumnNames="authority_id" baseTableName="authorities" constraintName="fk2b0f13211b3aa096" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="authority_id" referencedTableName="authorities"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-23">
+        <addForeignKeyConstraint baseColumnNames="audit_item_id" baseTableName="audit" constraintName="fk58d9bdb10e530ad" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="user_id" referencedTableName="audit"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-24">
+        <addForeignKeyConstraint baseColumnNames="audit_item_id" baseTableName="audit" constraintName="fk58d9bdb6a589df2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="user_id" referencedTableName="users"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-25">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="audit" constraintName="fk58d9bdb8f202d59" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="user_id" referencedTableName="audit"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-26">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="audit" constraintName="fk58d9bdbe8939a9e" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="user_id" referencedTableName="users"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-27">
+        <addForeignKeyConstraint baseColumnNames="size_id" baseTableName="products" constraintName="fkc42bd1642d21664c" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="product_size_id" referencedTableName="product_sizes"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-28">
+        <addForeignKeyConstraint baseColumnNames="type_id" baseTableName="products" constraintName="fkc42bd1647cc8efac" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="product_type_id" referencedTableName="product_types"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-29">
+        <addForeignKeyConstraint baseColumnNames="manufacturer_id" baseTableName="products" constraintName="fkc42bd164ac4919d7" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="manufacturer_id" referencedTableName="manufacturers"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-30">
+        <addForeignKeyConstraint baseColumnNames="type_id" baseTableName="product_fields" constraintName="fkea4314097cc8efac" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="product_type_id" referencedTableName="product_types"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-31">
+        <addUniqueConstraint columnNames="audit_item_id" constraintName="audit_audit_item_id_key" deferrable="false" disabled="false" initiallyDeferred="false" tableName="audit"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-32">
+        <addUniqueConstraint columnNames="name, country" constraintName="manufacturers_name_country_key" deferrable="false" disabled="false" initiallyDeferred="false" tableName="manufacturers"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-33">
+        <addUniqueConstraint columnNames="field_id, product_id, value" constraintName="parameters_field_id_product_id_value_key" deferrable="false" disabled="false" initiallyDeferred="false" tableName="parameters"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-34">
+        <addUniqueConstraint columnNames="name, type_id" constraintName="product_fields_name_type_id_key" deferrable="false" disabled="false" initiallyDeferred="false" tableName="product_fields"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-35">
+        <addUniqueConstraint columnNames="name" constraintName="product_types_name_key" deferrable="false" disabled="false" initiallyDeferred="false" tableName="product_types"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-36">
+        <addUniqueConstraint columnNames="size_id" constraintName="products_size_id_key" deferrable="false" disabled="false" initiallyDeferred="false" tableName="products"/>
+    </changeSet>
+    <changeSet author="ali (generated)" id="1419930883862-37">
+        <addUniqueConstraint columnNames="type_id, manufacturer_id, size_id, price, weight, name" constraintName="products_type_id_manufacturer_id_size_id_price_weight_name_key" deferrable="false" disabled="false" initiallyDeferred="false" tableName="products"/>
+    </changeSet>
+</databaseChangeLog>

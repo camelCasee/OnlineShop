@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:security="http://www.springframework.org/schema/security"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            /WEB-INF/config/spring-config.xml
+            /WEB-INF/spring/spring-security.xml
+        </param-value>
+    </context-param>
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>
+
+    <!-- JMS references-->
+    <!--<resource-ref>-->
+        <!--<description>Connection Factory</description>-->
+        <!--<res-ref-name>jms/mqConnectionFactory</res-ref-name>-->
+        <!--<res-type>org.apache.activemq.ActiveMQConnectionFactory</res-type>-->
+        <!--<res-auth>Container</res-auth>-->
+    <!--</resource-ref>-->
+
+    <!--<resource-env-ref>-->
+        <!--<resource-env-ref-name>jms/ordersQueue</resource-env-ref-name>-->
+        <!--<resource-env-ref-type>org.apache.activemq.command.ActiveMQQueue</resource-env-ref-type>-->
+    <!--</resource-env-ref>-->
+
+    <!-- Servlets -->
+    <!--<servlet>-->
+        <!--<display-name>Messages</display-name>-->
+        <!--<servlet-name>MessageServlet</servlet-name>-->
+        <!--<servlet-class>ru.ncedu.onlineshop.MessageServlet</servlet-class>-->
+    <!--</servlet>-->
+
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>MessageServlet</servlet-name>-->
+        <!--<url-pattern>/messages</url-pattern>-->
+    <!--</servlet-mapping>-->
+
+    <servlet>
+        <servlet-name>VaadinServlet</servlet-name>
+        <servlet-class>com.vaadin.server.VaadinServlet</servlet-class>
+        <init-param>
+            <param-name>UI</param-name>
+            <param-value>ru.ncedu.onlineshop.vaadin.ShopUI</param-value>
+        </init-param>
+        <init-param>
+            <param-name>applicationBean</param-name>
+            <param-value>ru.ncedu.onlineshop.vaadin.ShopUI</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>VaadinServlet</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>VaadinServlet</servlet-name>-->
+        <!--<url-pattern>/VAADIN/*</url-pattern>-->
+    <!--</servlet-mapping>-->
+
+    <session-config>
+        <session-timeout>10</session-timeout>
+    </session-config>
+
+    <!--<session-management>-->
+        <!--<concurrency-control error-if-maximum-exceeded="true" max-sessions="1"/>-->
+    <!--</session-management>-->
+
+    <!-- Security filter -->
+    <!--<filter>-->
+    <!--<filter-name>springSecurityFilterChain</filter-name>-->
+    <!--<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>-->
+    <!--</filter>-->
+
+    <!--<filter-mapping>-->
+    <!--<filter-name>springSecurityFilterChain</filter-name>-->
+    <!--<url-pattern>/*</url-pattern>-->
+    <!--</filter-mapping>-->
+
+    <!--<welcome-file-list>-->
+    <!--<welcome-file>index.jsp</welcome-file>-->
+    <!--</welcome-file-list>-->
+
+</web-app>

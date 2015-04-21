@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN" "http://jetty.mortbay.org/configure.dtd">
+
+<Configure id="wac" class="org.mortbay.jetty.webapp.WebAppContext">
+
+    <New id="connectionFactory" class="org.mortbay.jetty.plus.naming.Resource">
+        <Arg>jms/mqConnectionFactory</Arg>
+        <Arg>
+            <New class="org.apache.activemq.ActiveMQConnectionFactory">
+                <Arg>tcp://localhost:61616</Arg>
+            </New>
+        </Arg>
+    </New>
+
+    <New id="ordersQueue" class="org.mortbay.jetty.plus.naming.Resource">
+        <Arg>jms/ordersQueue</Arg>
+        <Arg>
+            <New class="org.apache.activemq.command.ActiveMQQueue">
+                <Arg>ordersQueue</Arg>
+            </New>
+        </Arg>
+    </New>
+
+</Configure>

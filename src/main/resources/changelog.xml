@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet author="Али (generated)" id="1411506785728-1">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="MANUFACTURERS" schemaName="public"/>
+            </not>
+        </preConditions>
+        <createTable tableName="MANUFACTURERS">
+            <column autoIncrement="true" name="MANUFACTURER_ID" type="BIGINT(19)">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_8"/>
+            </column>
+            <column name="COUNTRY" type="VARCHAR(255)"/>
+            <column name="NAME" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Али (generated)" id="1411506785728-2">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="PARAMETERS" schemaName="public"/>
+            </not>
+        </preConditions>
+        <createTable tableName="PARAMETERS">
+            <column autoIncrement="true" name="PARAMETER_ID" type="INT">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_3"/>
+            </column>
+            <column name="VALUE" type="VARCHAR(255)"/>
+            <column name="FIELD_ID" type="BIGINT"/>
+            <column name="PRODUCT_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Али (generated)" id="1411506785728-3">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="PRODUCTS" schemaName="public"/>
+            </not>
+        </preConditions>
+        <createTable tableName="PRODUCTS">
+            <column autoIncrement="true" name="PRODUCT_ID" type="INT">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_F"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)"/>
+            <column name="PRICE" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="WEIGHT" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MANUFACTURER_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SIZE_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TYPE_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Али (generated)" id="1411506785728-4">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="PRODUCT_FIELDS" schemaName="public"/>
+            </not>
+        </preConditions>
+        <createTable tableName="PRODUCT_FIELDS">
+            <column autoIncrement="true" name="PRODUCT_FIELD_ID" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_5"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)"/>
+            <column name="TYPE_ID" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Али (generated)" id="1411506785728-5">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="PRODUCT_SIZES" schemaName="public"/>
+            </not>
+        </preConditions>
+        <createTable tableName="PRODUCT_SIZES">
+            <column autoIncrement="true" name="PRODUCT_SIZE_ID" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_4"/>
+            </column>
+            <column name="HEIGHT" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LENGTH" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="WIDTH" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Али (generated)" id="1411506785728-6">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="PRODUCT_TYPES" schemaName="public"/>
+            </not>
+        </preConditions>
+        <createTable tableName="PRODUCT_TYPES">
+            <column autoIncrement="true" name="PRODUCT_TYPE_ID" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="CONSTRAINT_43"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Али (generated)" id="1411506785728-7">
+        <addForeignKeyConstraint baseColumnNames="PRODUCT_ID" baseTableName="PARAMETERS" constraintName="FK1B57C1EAA6F3AF7D" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="PRODUCT_ID" referencedTableName="PRODUCTS"/>
+    </changeSet>
+    <changeSet author="Али (generated)" id="1411506785728-8">
+        <addForeignKeyConstraint baseColumnNames="FIELD_ID" baseTableName="PARAMETERS" constraintName="FK1B57C1EAC739D88" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="PRODUCT_FIELD_ID" referencedTableName="PRODUCT_FIELDS"/>
+    </changeSet>
+    <changeSet author="Али (generated)" id="1411506785728-9">
+        <addForeignKeyConstraint baseColumnNames="SIZE_ID" baseTableName="PRODUCTS" constraintName="FKC42BD1642D21664C" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="PRODUCT_SIZE_ID" referencedTableName="PRODUCT_SIZES"/>
+    </changeSet>
+    <changeSet author="Али (generated)" id="1411506785728-10">
+        <addForeignKeyConstraint baseColumnNames="TYPE_ID" baseTableName="PRODUCTS" constraintName="FKC42BD1647CC8EFAC" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="PRODUCT_TYPE_ID" referencedTableName="PRODUCT_TYPES"/>
+    </changeSet>
+    <changeSet author="Али (generated)" id="1411506785728-11">
+        <addForeignKeyConstraint baseColumnNames="MANUFACTURER_ID" baseTableName="PRODUCTS" constraintName="FKC42BD164AC4919D7" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="MANUFACTURER_ID" referencedTableName="MANUFACTURERS"/>
+    </changeSet>
+    <changeSet author="Али (generated)" id="1411506785728-12">
+        <addForeignKeyConstraint baseColumnNames="TYPE_ID" baseTableName="PRODUCT_FIELDS" constraintName="FKEA4314097CC8EFAC" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="PRODUCT_TYPE_ID" referencedTableName="PRODUCT_TYPES"/>
+    </changeSet>
+    <changeSet author="Али (generated)" id="1411506785728-13">
+        <addUniqueConstraint columnNames="FIELD_ID,PRODUCT_ID,VALUE" constraintName="CONSTRAINT_38" deferrable="false" disabled="false" initiallyDeferred="false" tableName="PARAMETERS"/>
+    </changeSet>
+    <changeSet author="Али (generated)" id="1411506785728-14">
+        <addUniqueConstraint columnNames="WIDTH,HEIGHT,LENGTH" constraintName="CONSTRAINT_42" deferrable="false" disabled="false" initiallyDeferred="false" tableName="PRODUCT_SIZES"/>
+    </changeSet>
+    <changeSet author="Али (generated)" id="1411506785728-15">
+        <addUniqueConstraint columnNames="NAME" constraintName="CONSTRAINT_430" deferrable="false" disabled="false" initiallyDeferred="false" tableName="PRODUCT_TYPES"/>
+    </changeSet>
+    <changeSet author="Али (generated)" id="1411506785728-16">
+        <addUniqueConstraint columnNames="NAME,TYPE_ID" constraintName="CONSTRAINT_50" deferrable="false" disabled="false" initiallyDeferred="false" tableName="PRODUCT_FIELDS"/>
+    </changeSet>
+    <changeSet author="Али (generated)" id="1411506785728-17">
+        <addUniqueConstraint columnNames="NAME,COUNTRY" constraintName="CONSTRAINT_82" deferrable="false" disabled="false" initiallyDeferred="false" tableName="MANUFACTURERS"/>
+    </changeSet>
+    <changeSet author="Али (generated)" id="1411506785728-18">
+        <addUniqueConstraint columnNames="SIZE_ID" constraintName="CONSTRAINT_F2" deferrable="false" disabled="false" initiallyDeferred="false" tableName="PRODUCTS"/>
+    </changeSet>
+    <changeSet author="Али (generated)" id="1411506785728-19">
+        <addUniqueConstraint columnNames="MANUFACTURER_ID" constraintName="CONSTRAINT_F2D" deferrable="false" disabled="false" initiallyDeferred="false" tableName="PRODUCTS"/>
+    </changeSet>
+    <changeSet author="Али (generated)" id="1411506785728-20">
+        <addUniqueConstraint columnNames="TYPE_ID" constraintName="CONSTRAINT_F2D1" deferrable="false" disabled="false" initiallyDeferred="false" tableName="PRODUCTS"/>
+    </changeSet>
+    <changeSet author="Али (generated)" id="1411506785728-21">
+        <addUniqueConstraint columnNames="TYPE_ID,MANUFACTURER_ID,SIZE_ID,PRICE,WEIGHT,NAME" constraintName="CONSTRAINT_F2D1C" deferrable="false" disabled="false" initiallyDeferred="false" tableName="PRODUCTS"/>
+    </changeSet>
+    <changeSet author="Али (generated)" id="1411506785728-22">
+        <createIndex indexName="CONSTRAINT_INDEX_3" tableName="PARAMETERS" unique="true">
+            <column name="FIELD_ID"/>
+            <column name="PRODUCT_ID"/>
+            <column name="VALUE"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Али (generated)" id="1411506785728-23">
+        <createIndex indexName="CONSTRAINT_INDEX_4" tableName="PRODUCT_SIZES" unique="true">
+            <column name="WIDTH"/>
+            <column name="HEIGHT"/>
+            <column name="LENGTH"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Али (generated)" id="1411506785728-24">
+        <createIndex indexName="CONSTRAINT_INDEX_5" tableName="PRODUCT_FIELDS" unique="true">
+            <column name="NAME"/>
+            <column name="TYPE_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Али (generated)" id="1411506785728-25">
+        <createIndex indexName="CONSTRAINT_INDEX_8" tableName="MANUFACTURERS" unique="true">
+            <column name="NAME"/>
+            <column name="COUNTRY"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>
